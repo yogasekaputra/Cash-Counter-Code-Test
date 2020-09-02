@@ -4,76 +4,33 @@
         <title>Cash Counter</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-<!--         <link href="css/cash_counter.css" rel="stylesheet" type="text/css"> -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-        
-        
+        <script type='text/javascript' src='js/controller.js'></script>
+        <link rel="stylesheet" href="css/cash_counter.css">
     </head>
     <body>
             <div class="container-fluid">
-                <div class="content">
-                    <h3 class="title">Cash Counter</h3>
-                    <div class="card">
-                        <p>Input Money : <input id="Money" placeholder="50000"></p>
-                        
-                        <button class="btn btn-info" type="submit" onclick="validasi_Inputan()">Submit</button>
+                <div class="container-title">
+                    <div class="title2">
+                        <h4>Kreatifitas Sinergisme Teknoindo</h4>
                     </div>
-                    <div id="Result">
-                        <p id="Hasil-1"></p>
-                        <p id="Hasil-2"></p>
+                    <div class="title1">
+                        <h3 class="title">Cash Counter</h3>
                     </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-4 form-inline">
+                        <p>Money : <input id="Money" class="" type="text" placeholder="50000"></p>
+                        <button class="btn-info" type="submit" onclick="validasi_Inputan()">Submit</button>
+                    </div>
+                    </br>
+                    <!-- <label>Example : Rp.50000,- , 500000, Rp.500000</label> -->
+                </div>
+                <div class="row">
+                    <p id="Hasil-1"></p>
+                    </br>
+                    <p id="Hasil-2"></p>
                 </div>
             </div>
     </body>
 </html>
-<script>
-    function CashCounter(Money){
-        var mata_uang = [100000, 50000, 20000, 10000, 5000, 2000, 1000, 500, 200, 100,50,25,1];
-        var temp = Money;
-        var banyak_pecahan;
-        var pecahan;
-        var text;
-        document.getElementById("Hasil-1").innerHTML = "Uang Anda Adalah = Rp." + Money;
-        for (pecahan of mata_uang) {
-            if(temp < pecahan){
-                continue;
-            }
-            banyak_pecahan = parseInt(temp/pecahan);
-            if(banyak_pecahan != NaN){
-                temp = temp - (pecahan * banyak_pecahan);
-                text += " Rp." + pecahan + ",- x  "+ banyak_pecahan + "<br>";
-            }else{
-                alert("Masukan Tidak Sesuai Format!");
-            }
-        }
-        document.getElementById("Hasil-2").innerHTML = text;
-    }
-    function Replace(Money){
-        var replacement ="";
-        var regex4 = new RegExp("[Rp.|.|,|-]","g");
-        var match = Money.replace(regex4,replacement);
-        CashCounter(match);
-    }
-    function validasi_Inputan(){
-        var validasiAngka = /[Rp.0-9,-][^Rp.]+$/;
-        var Money = document.getElementById("Money");
-        if (Money.value.match(validasiAngka)) {
-             Replace(Money.value);
-            
-        } else {
-            alert("Masukan Angka Anda!\nFormat wajib angka!");
-            Money.value="";
-            Money.focus();
-            return false;
-        }
-    }
-</script>
-
-
-
-
